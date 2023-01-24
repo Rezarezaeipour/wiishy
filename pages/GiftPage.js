@@ -56,7 +56,9 @@ export default function ProfileEditGift() {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline/>
+
       <ProfileAppBar></ProfileAppBar>
+
       <Container component="main" maxWidth="sm" sx={{ mb: 12, mt: 10 }}>
         <Paper  
           elevation={0}      
