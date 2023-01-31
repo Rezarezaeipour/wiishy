@@ -15,19 +15,16 @@ const Label = styled(Paper)(({ theme }) => ({
   borderBottomRightRadius: 0,
 }));
 
-export default function MasonaryGifts() {
-  return (
-
-    
+export default function MasonaryGifts(props) {
+  return (  
     <Box sx={{ width: 500, minHeight: 393 }}>
        <Masonry columns={3} spacing={2}>
-        {itemData.map((item, index) => (
-          <div key={index}>
-            <Label>{index + 1}</Label>
+        {props.giftCollection.map((item) => (
+          <div key={item.id}>
+            <Label>{item.name}</Label>
             <img
-              src={`${item.img}?w=162&auto=format`}
-              srcSet={`${item.img}?w=162&auto=format&dpr=2 2x`}
-              alt={item.title}
+            
+              alt={item.name}
               loading="lazy"
               style={{
                 borderBottomLeftRadius: 4,
@@ -44,34 +41,3 @@ export default function MasonaryGifts() {
 }
 
 
-const itemData = [
-  {
-    img: 'https://unsplash.com/photos/5YpZt9IPVAs',
-    title: 'Fern',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f',
-    title: 'Snacks',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-    title: 'Mushrooms',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1529655683826-aba9b3e77383',
-    title: 'Tower',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-    title: 'Sea star',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
-    title: 'Honey',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-    title: 'Basketball',
-  },
-
-];

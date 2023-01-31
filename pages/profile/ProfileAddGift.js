@@ -13,7 +13,7 @@ import { Autocomplete, Button, Typography } from "@mui/material";
 import UploadButtons from "../components/general/UploadButtons";
 import ProfileAvatar from "../components/general/ProfileAvatar.js";
 import ProfileAppBar from "../components/profile/ProfileAppBar";
-import DesireSlider from "../components/general/DesireSlider";
+import DesireSlider from "../components/general/DesireSlider";  
  
 
 const theme = createTheme();
@@ -43,10 +43,8 @@ export default function ProfileAddGiftBar() {
 
       const id= Math.floor(Math.random()*10000)
       const newGift ={ id:id, ...{link:glink,name:gname,price:gprice,description:gdesc,desire:gdesire}}
-
-       console.log(newGift)   
+     
       addProduct(newGift);
-
       setGlink('');
       setGname('');
       setGprice('');

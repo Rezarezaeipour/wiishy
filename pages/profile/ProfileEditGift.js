@@ -21,16 +21,20 @@ import { useState } from "react";
 const theme = createTheme();
 
 export default function ProfileAddGiftBar() {
-
-  const[glink,setGlink]=useState('');
-  const[gname,setGname]=useState('');
-  const[gprice,setGprice]=useState('');
-  const[gdesc,setGdesc]=useState('');
-  const[gdesire,setGdesire]=useState('');
-
+  const [glink, setGlink] = useState("");
+  const [gname, setGname] = useState("");
+  const [gprice, setGprice] = useState("");
+  const [gdesc, setGdesc] = useState("");
+  const [gdesire, setGdesire] = useState("");
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault();    
+
+    const editGift ={ id:9970, ...{link:glink,name:gname,price:gprice,description:gdesc,desire:gdesire}}
+     
+    updateProduct(editGift);
+    console.log(editGift)
+
   };
 
   useEffect(() => {
@@ -40,15 +44,22 @@ export default function ProfileAddGiftBar() {
 
       const gift = responsData.find((p) => p.id == 9970);
       console.log(gift);
-      setGlink(gift['link'])
-      setGname(gift['name'])
-      setGprice(gift['price'])
-      setGdesc(gift['description'])
-     
+      setGlink(gift["link"]);
+      setGname(gift["name"]);
+      setGprice(gift["price"]);
+      setGdesc(gift["description"]);
     };
-
     req();
   }, []);
+
+  const updateProduct = async (product) =>
+  {
+    const response= await fetch('http://localhost:8888/gifts/9970',{
+      method:'PUT',
+      body: JSON.stringify(product),
+      headers:{'Content-type':'application/json'}
+    })
+  }
 
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4, mt: 12 }}>
@@ -143,15 +154,12 @@ export default function ProfileAddGiftBar() {
             <Grid item xs={12}>
               <DesireSlider xs={12}></DesireSlider>
             </Grid>
-            <Grid item xs={12}>
-              <DesireSlider xs={12}></DesireSlider>
-            </Grid>
             <Grid item xs={12}></Grid>
             <Grid item xs={12}>
               <Button variant="outlined" startIcon={<DeleteIcon />}>
                 Delete
               </Button>
-              <Button variant="contained" endIcon={<SendIcon />}>
+              <Button type="submit" variant="contained" endIcon={<SendIcon />}>
                 Send
               </Button>
             </Grid>

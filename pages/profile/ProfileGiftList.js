@@ -12,17 +12,33 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
+import { useEffect } from "react";
 
 const theme = createTheme();
 
 export default function ProfileGiftList() {
-  const [value, setValue] = React.useState("1");
 
+ 
+     const [glist, setGlist] = React.useState([]);
+
+     useEffect(() => {
+
+      const req = async () => {
+      const res = await fetch("http://localhost:8888/gifts");
+      const responsData = await res.json();
+
+      const gifts = responsData.filter((p) => p.profileid == 344);     
+      setGlist(gifts);        
+    };
+    req();
+  }, []);
+
+  const [value, setValue] = React.useState("1");
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  return (
-  
+
+  return (  
     
     <Container component="main" maxWidth="sm" sx={{ mb: 4, mt: 12 }}>
         <ProfileAppBar></ProfileAppBar>
@@ -32,6 +48,7 @@ export default function ProfileGiftList() {
       >
           <Box sx={{ mt: 5 }}>
             <TabContext value={value}>
+
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                 <TabList
                   onChange={handleChange}
@@ -41,12 +58,14 @@ export default function ProfileGiftList() {
                   <Tab label="Don't Want" value="2" />
                 </TabList>
               </Box>
+
               <TabPanel value="1">
                 <Grid container spacing={2}>
-                  <MasonaryGifts />
+                  <MasonaryGifts giftCollection={glist}/>
                 </Grid>
               </TabPanel>
               <TabPanel value="2">Item Two</TabPanel>
+
             </TabContext>
           </Box>
         </Paper>
