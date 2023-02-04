@@ -7,15 +7,58 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
-import { CssBaseline } from "@mui/material";
+import {
+  Avatar,
+  CardHeader,
+  CssBaseline,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  SwipeableDrawer,
+} from "@mui/material";
+import Image from "next/image";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Drawer from "@mui/material/Drawer";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
+import Divider from "@mui/material/Divider";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { red } from '@mui/material/colors';
 
 export default function ProfileAppBar() {
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event &&
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+    setState({ ...state, [anchor]: open });
+  };
+
   return (
     <React.Fragment>
       <CssBaseline />
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="fixed">
-          <Toolbar>
+        <AppBar position="fixed" elevation="0">
+          <Toolbar
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              pt: 3,
+              pb: 2,
+            }}
+          >
             <IconButton
               size="large"
               edge="start"
@@ -23,16 +66,93 @@ export default function ProfileAppBar() {
               aria-label="open drawer"
               sx={{ mr: 2 }}
             >
+              <ArrowBackIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
+              <Image
+                src="/images/logo-blue.png"
+                alt="Wiishy"
+                layout="contain"
+                width="126"
+                height="35"
+              ></Image>
+            </Typography>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={toggleDrawer("bottom", true)}
+            >
               <MenuIcon />
             </IconButton>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: "block", sm: "block" } }}
-            >
-              X625
-            </Typography>
+            <React.Fragment>
+              <SwipeableDrawer
+                anchor="bottom"
+                open={state.bottom}
+                onClose={toggleDrawer("bottom", false)}
+                onOpen={toggleDrawer("bottom", true)}
+              >
+                <Box
+                  sx={{
+                    width: "auto",
+                    borderRasius: "5px 0px 0px 5px",
+                  }}
+                  role="presentation"
+                  onClick={toggleDrawer("bottom", false)}
+                  onKeyDown={toggleDrawer("bottom", false)}
+                >
+                  <List>
+                    <ListItem disablePadding xs={{width:'100%'}}>
+                      <CardHeader
+                        avatar={
+                          <Avatar
+                            sx={{ bgcolor: red[500] }}
+                            aria-label="recipe"
+                          >
+                            R
+                          </Avatar>
+                        }
+                        action={
+                          <IconButton aria-label="settings">
+                            <MoreVertIcon />
+                          </IconButton>
+                        }
+                        title="Reza Rezaei pour"
+                        subheader="February 4, 2023"
+                      />
+                    </ListItem>
+                    <ListItem disablePadding>
+                      <ListItemButton>
+                        <ListItemIcon>
+                          <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="text1" />
+                      </ListItemButton>
+                    </ListItem>
+                  </List>
+                  <Divider />
+                  <List>
+                    <ListItem disablePadding>
+                      <ListItemButton>
+                        <ListItemIcon>
+                          <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="text1" />
+                      </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                      <ListItemButton>
+                        <ListItemIcon>
+                          <MailIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="text2" />
+                      </ListItemButton>
+                    </ListItem>
+                  </List>
+                </Box>
+              </SwipeableDrawer>
+            </React.Fragment>
           </Toolbar>
         </AppBar>
       </Box>

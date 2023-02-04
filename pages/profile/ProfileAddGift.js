@@ -14,7 +14,7 @@ import UploadButtons from "../components/general/UploadButtons";
 import ProfileAvatar from "../components/general/ProfileAvatar.js";
 import ProfileAppBar from "../components/profile/ProfileAppBar";
 import DesireSlider from "../components/general/DesireSlider";  
- 
+import { useState } from "react";
 
 const theme = createTheme();
 
@@ -22,7 +22,7 @@ const theme = createTheme();
 export default function ProfileAddGiftBar() {
   
   
-  const[glink,setGlink]=useState('');
+  const[glink,setGlink]=React.useState('');
   const[gname,setGname]=useState('');
   const[gprice,setGprice]=useState('');
   const[gdesc,setGdesc]=useState('');
@@ -42,7 +42,7 @@ export default function ProfileAddGiftBar() {
     // setGdesire(data.get('g-desire'));     
 
       const id= Math.floor(Math.random()*10000)
-      const newGift ={ id:id, ...{link:glink,name:gname,price:gprice,description:gdesc,desire:gdesire}}
+      const newGift ={ id:id,profileid:0,link:glink,name:gname,price:gprice,description:gdesc,desire:gdesire,photourl:0}
      
       addProduct(newGift);
       setGlink('');

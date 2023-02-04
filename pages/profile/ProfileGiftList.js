@@ -19,20 +19,6 @@ const theme = createTheme();
 export default function ProfileGiftList() {
 
  
-     const [glist, setGlist] = React.useState([]);
-
-     useEffect(() => {
-
-      const req = async () => {
-      const res = await fetch("http://localhost:8888/gifts");
-      const responsData = await res.json();
-
-      const gifts = responsData.filter((p) => p.profileid == 344);     
-      setGlist(gifts);        
-    };
-    req();
-  }, []);
-
   const [value, setValue] = React.useState("1");
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -61,7 +47,7 @@ export default function ProfileGiftList() {
 
               <TabPanel value="1">
                 <Grid container spacing={2}>
-                  <MasonaryGifts giftCollection={glist}/>
+                  <MasonaryGifts userId="444"/>
                 </Grid>
               </TabPanel>
               <TabPanel value="2">Item Two</TabPanel>

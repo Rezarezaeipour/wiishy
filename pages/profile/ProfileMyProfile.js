@@ -114,7 +114,7 @@ export default function ProfileMyProfile() {
             </Box>
             <TabPanel value="1">
               <Grid container spacing={2}>
-                <MasonaryGifts />
+                <MasonaryGifts  userId="444" />
               </Grid>
             </TabPanel>
             <TabPanel value="2">Item Two</TabPanel>

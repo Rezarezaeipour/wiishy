@@ -1,43 +1,57 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
-import Masonry from '@mui/lab/Masonry';
-import Image from 'next/image';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
+import Masonry from "@mui/lab/Masonry";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect } from "react";
+import { useTheme } from '@mui/material/styles';
 
-const Label = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(0.5),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-  borderBottomLeftRadius: 0,
-  borderBottomRightRadius: 0,
-}));
+
 
 export default function MasonaryGifts(props) {
-  return (  
-    <Box sx={{ width: 500, minHeight: 393 }}>
-       <Masonry columns={3} spacing={2}>
-        {props.giftCollection.map((item) => (
+
+  const themee = useTheme() 
+  const [glist, setGlist] = React.useState([]);
+  
+  useEffect(() => {
+    const req = async () => {
+    const res = await fetch("http://localhost:8888/gifts");
+    const responsData = await res.json();
+
+    const gifts = responsData.filter((p) => p.profileid == props.userId);
+    setGlist(gifts);
+    };
+    req();
+  }, [props.userId]);
+
+  return (   
+    <Box sx={{ minHeight: 393  }}>    
+      <Masonry columns={2} spacing={1}>
+        {glist.map((item) => (
           <div key={item.id}>
-            <Label>{item.name}</Label>
-            <img
-            
-              alt={item.name}
-              loading="lazy"
-              style={{
-                borderBottomLeftRadius: 4,
-                borderBottomRightRadius: 4,
-                display: 'block',
-                width: '100%',
-              }}
-            />
+            <Link href={`/profile/ProfileEditGift/${item.id}`}>
+              <div> 
+
+                <img
+                  alt={item.name}
+                  loading="lazy"
+                  src={`/giftimages/${item.photourl}.jpg`}
+                  style={{
+                    borderBottomLeftRadius: 4,
+                    borderBottomRightRadius: 4,
+                    display: "block",
+                    width: "100%",
+                  }}
+                />
+                <p>{item.name}</p>
+             
+              </div>
+            </Link>
           </div>
         ))}
       </Masonry>
     </Box>
   );
 }
-
-

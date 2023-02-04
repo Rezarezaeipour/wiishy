@@ -9,14 +9,15 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import { Autocomplete, Button, Typography } from "@mui/material";
-import UploadButtons from "../components/general/UploadButtons";
-import ProfileAvatar from "../components/general/ProfileAvatar.js";
-import ProfileAppBar from "../components/profile/ProfileAppBar";
-import DesireSlider from "../components/general/DesireSlider";
+import UploadButtons from "../../components/general/UploadButtons";
+import ProfileAvatar from "../../components/general/ProfileAvatar.js";
+import ProfileAppBar from "../../components/profile/ProfileAppBar";
+import DesireSlider from "../../components/general/DesireSlider";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const theme = createTheme();
 
@@ -27,13 +28,16 @@ export default function ProfileAddGiftBar() {
   const [gdesc, setGdesc] = useState("");
   const [gdesire, setGdesire] = useState("");
 
+  const router =useRouter();
+  const [giftid, setGiftid] = useState(router.query.giftid);
+
   const handleSubmit = (event) => {
     event.preventDefault();    
 
-    const editGift ={ id:9970, ...{link:glink,name:gname,price:gprice,description:gdesc,desire:gdesire}}
+    const editGift ={ id:giftid,profileid:444,link:glink,name:gname,price:gprice,description:gdesc,desire:gdesire,photourl:0}
      
     updateProduct(editGift);
-    console.log(editGift)
+
 
   };
 
@@ -42,7 +46,7 @@ export default function ProfileAddGiftBar() {
       const res = await fetch("http://localhost:8888/gifts");
       const responsData = await res.json();
 
-      const gift = responsData.find((p) => p.id == 9970);
+      const gift = responsData.find((p) => p.id == giftid);
       console.log(gift);
       setGlink(gift["link"]);
       setGname(gift["name"]);
@@ -54,7 +58,7 @@ export default function ProfileAddGiftBar() {
 
   const updateProduct = async (product) =>
   {
-    const response= await fetch('http://localhost:8888/gifts/9970',{
+    const response= await fetch(`http://localhost:8888/gifts/${giftid}`,{
       method:'PUT',
       body: JSON.stringify(product),
       headers:{'Content-type':'application/json'}
@@ -155,10 +159,7 @@ export default function ProfileAddGiftBar() {
               <DesireSlider xs={12}></DesireSlider>
             </Grid>
             <Grid item xs={12}></Grid>
-            <Grid item xs={12}>
-              <Button variant="outlined" startIcon={<DeleteIcon />}>
-                Delete
-              </Button>
+            <Grid item xs={12}>             
               <Button type="submit" variant="contained" endIcon={<SendIcon />}>
                 Send
               </Button>
