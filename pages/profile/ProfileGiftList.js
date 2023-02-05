@@ -30,23 +30,22 @@ export default function ProfileGiftList() {
         <ProfileAppBar></ProfileAppBar>
         <Paper
         elevation={0}
-        sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
+       
       >
           <Box sx={{ mt: 5 }}>
             <TabContext value={value}>
 
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                 <TabList
-                  onChange={handleChange}
-                  aria-label="lab API tabs example"
+                  onChange={handleChange}                 
                 >
-                  <Tab label="Want" value="1" />
-                  <Tab label="Don't Want" value="2" />
+                  <Tab label="Want" value="1"  sx={{py:3}}/>
+                  <Tab label="Don't Want" value="2"  sx={{py:3}}/>
                 </TabList>
               </Box>
 
-              <TabPanel value="1">
-                <Grid container spacing={2}>
+              <TabPanel value="1"  sx={{ px:0 , py:5}}>
+                <Grid container spacing={0}>
                   <MasonaryGifts userId="444"/>
                 </Grid>
               </TabPanel>

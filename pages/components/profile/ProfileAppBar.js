@@ -11,6 +11,7 @@ import {
   Avatar,
   CardHeader,
   CssBaseline,
+  Link,
   List,
   ListItem,
   ListItemButton,
@@ -24,8 +25,8 @@ import Drawer from "@mui/material/Drawer";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import Divider from "@mui/material/Divider";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { red } from '@mui/material/colors';
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { red } from "@mui/material/colors";
 
 export default function ProfileAppBar() {
   const [state, setState] = React.useState({
@@ -103,50 +104,81 @@ export default function ProfileAppBar() {
                   onKeyDown={toggleDrawer("bottom", false)}
                 >
                   <List>
-                    <ListItem disablePadding xs={{width:'100%'}}>
-                      <CardHeader
-                        avatar={
-                          <Avatar
-                            sx={{ bgcolor: red[500] }}
-                            aria-label="recipe"
-                          >
-                            R
-                          </Avatar>
-                        }
-                        action={
-                          <IconButton aria-label="settings">
-                            <MoreVertIcon />
-                          </IconButton>
-                        }
-                        title="Reza Rezaei pour"
-                        subheader="February 4, 2023"
-                      />
+                    <ListItem disablePadding xs={{ width: "100%" }}>
+                      <Link href={"/profile/EditProfile"}>
+                        <CardHeader
+                          avatar={
+                            <Avatar
+                              sx={{ bgcolor: red[500] }}
+                              aria-label="recipe"
+                            >
+                              R
+                            </Avatar>
+                          }
+                          action={
+                            <IconButton aria-label="settings">
+                              <MoreVertIcon />
+                            </IconButton>
+                          }
+                          title="Reza Rezaei pour"
+                          subheader="February 4, 2023"
+                        />
+                      </Link>
                     </ListItem>
                     <ListItem disablePadding>
-                      <ListItemButton>
-                        <ListItemIcon>
-                          <InboxIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="text1" />
-                      </ListItemButton>
+                      <Link href={"/profile/ProfileGiftList"}>
+                        <ListItemButton>
+                          <ListItemIcon>
+                            <InboxIcon />
+                          </ListItemIcon>
+                          <ListItemText primary="My Wish List" />
+                        </ListItemButton>
+                      </Link>
+                    </ListItem>
+                    <ListItem disablePadding>
+                      <Link href={"/profile/ProfileAddGift"}>
+                        <ListItemButton>
+                          <ListItemIcon>
+                            <InboxIcon />
+                          </ListItemIcon>
+                          <ListItemText primary="Add Wish Gifts & things" />
+                        </ListItemButton>
+                      </Link>
+                    </ListItem>
+                    <ListItem disablePadding>
+                      <Link href={"/profile/ProfileAddGift"}>
+                        <ListItemButton>
+                          <ListItemIcon>
+                            <InboxIcon />
+                          </ListItemIcon>
+                          <ListItemText primary="Add Unwanted Gifts & things" />
+                        </ListItemButton>
+                      </Link>
                     </ListItem>
                   </List>
+
                   <Divider />
+
                   <List>
-                    <ListItem disablePadding>
-                      <ListItemButton>
-                        <ListItemIcon>
-                          <InboxIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="text1" />
-                      </ListItemButton>
-                    </ListItem>
                     <ListItem disablePadding>
                       <ListItemButton>
                         <ListItemIcon>
                           <MailIcon />
                         </ListItemIcon>
-                        <ListItemText primary="text2" />
+                        <ListItemText primary="Share My Profile" />
+                      </ListItemButton>
+                    </ListItem>
+                  </List>
+
+                  <Divider />
+
+                  <List>
+                    <ListItem disablePadding>
+                      <ListItemButton>
+                        <ListItemIcon>
+                          <MailIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Log Out" />
                       </ListItemButton>
                     </ListItem>
                   </List>

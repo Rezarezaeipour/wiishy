@@ -48,8 +48,9 @@ const wiishyTheme = createTheme({
       styleOverrides: {
         root: {
           fontSize: "1rem",
-          // backgroundColor: "#ebf3f7",          
-          borderRadius: 10
+          backgroundColor: "#ebf3f7",          
+          borderRadius: 10,
+          
         },
       },
     },
