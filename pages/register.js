@@ -12,20 +12,81 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useState } from "react";
+import { Alert, Snackbar } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function Register() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
+  const[Name,setName]=useState('');
+  const[LastName,setLastName]=useState('');
+  const[Email,setEmail]=useState('');
+  const[Password,setPassword]=useState('');
+  const[Confirmpassword,setConfirmpassword]=useState('');
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
   };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const handleSubmit = (event) => {
+
+    event.preventDefault();
+
+    if(Password===Confirmpassword)
+    {
+    const id= Math.floor(Math.random()*10000)
+    const newUser ={name:Name,lastname:LastName,email:Email,password: Password}   
+    
+      registerUser(newUser);
+      setName('');
+      setLastName('');
+      setEmail('');
+      setPassword('');
+      setConfirmpassword('');
+
+    }
+    else{
+      setOpen(true);
+    }
+       
+  };
+
+  const registerUser = async (nUser) =>
+  {
+    const response = await fetch('http://localhost:8000/users',{
+      method:'POST',
+      headers:{
+        'Content-type':'application/json'
+      },
+      body: JSON.stringify(nUser)
+    })
+    const responseData = await response.json();
+  } 
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+      <Snackbar
+        severity="error"
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message="Note archived"
+        
+      >
+        <Alert  severity="warning" sx={{ width: '100%' }}>
+          This is a success message!
+        </Alert>
+      </Snackbar>
       <Box
         sx={{
           marginTop: 8,
@@ -52,6 +113,7 @@ export default function Register() {
                 label="First Name"
                 autoFocus
                 variant="standard"
+                onChange={(e) => {setName(e.target.value)}}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -63,6 +125,7 @@ export default function Register() {
                 name="lastName"
                 autoComplete="family-name"
                 variant="standard"
+                onChange={(e) => {setLastName(e.target.value)}}
               />
             </Grid>
             <Grid item xs={12}>
@@ -74,19 +137,9 @@ export default function Register() {
                 name="email"
                 autoComplete="email"
                 variant="standard"
+                onChange={(e) => {setEmail(e.target.value)}}
               />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="confirmemail"
-                label="Confirm Email Address"
-                name="confirmemail"
-                autoComplete="confirmemail"
-                variant="standard"
-              />
-            </Grid>
+            </Grid>           
             <Grid item xs={12}>
               <TextField
                 required
@@ -97,12 +150,26 @@ export default function Register() {
                 id="password"
                 autoComplete="new-password"
                 variant="standard"
+                onChange={(e) => {setPassword(e.target.value)}}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                id="confirmpassword"
+                label="Confirm password"
+                name="confirmpassword"
+                type="password"
+                autoComplete="confirmpassword"
+                variant="standard"
+                onChange={(e) => {setConfirmpassword(e.target.value)}}
               />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="Tired of shit gits and wanna change it"
+                label="Tired of shit gfits and wanna change this situation"
               />
             </Grid>
           </Grid>

@@ -33,14 +33,6 @@ export default function ProfileAddGiftBar() {
 
     event.preventDefault();
 
-    // This seems a bit oldfashion so we use STATEs
-    //const data = new FormData(event.currentTarget);
-    // setGlink(data.get('g-link'));
-    // setGname(data.get('g-name'));
-    // setGprice(data.get('g-price'));  
-    // setGdesc(data.get('g-desc'));
-    // setGdesire(data.get('g-desire'));     
-
       const id= Math.floor(Math.random()*10000)
       const newGift ={ id:id,profileid:0,link:glink,name:gname,price:gprice,description:gdesc,desire:gdesire,photourl:0}
      
