@@ -1,14 +1,13 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "../styles/globals.css";
-
-
+import { AuthProvider } from "./context/AuthContext";
 
 const wiishyTheme = createTheme({
   palette: {
-    type: "light",    
+    type: "light",
     primary: {
       light: "#1A32E0",
-      main: "#1429cb",      
+      main: "#1429cb",
       dark: "#1325AD",
       contrastText: "#fff",
     },
@@ -22,11 +21,11 @@ const wiishyTheme = createTheme({
     divider: "#7a6d76",
   },
   status: {
-    danger: '#e53e3e',
+    danger: "#e53e3e",
   },
   neutral: {
-    main: '#64748B',
-    contrastText: '#fff',
+    main: "#64748B",
+    contrastText: "#fff",
   },
   props: {
     MuiAppBar: {
@@ -40,7 +39,6 @@ const wiishyTheme = createTheme({
           fontSize: "1rem",
           backgroundColor: "white",
           color: "#000",
-         
         },
       },
     },
@@ -48,32 +46,31 @@ const wiishyTheme = createTheme({
       styleOverrides: {
         root: {
           fontSize: "1rem",
-          backgroundColor: "#ebf3f7",          
+          backgroundColor: "#ebf3f7",
           borderRadius: 10,
-          
         },
       },
     },
-    MuiDrawer:{
+    MuiDrawer: {
       styleOverrides: {
-        root: {               
+        root: {
           borderRadius: 0,
           backgroundColor: "#1CA1E49D",
-          
-
         },
         paper: {
-          borderRadius:"15px 15px 0px 0px"
-        }
+          borderRadius: "15px 15px 0px 0px",
+        },
       },
-    }
+    },
   },
 });
 
 export default function App({ Component, pageProps }) {
   return (
     <ThemeProvider theme={wiishyTheme}>
-      <Component {...pageProps} />
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
     </ThemeProvider>
   );
 }

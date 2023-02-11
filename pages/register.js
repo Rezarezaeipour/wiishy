@@ -12,79 +12,119 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Alert, Snackbar } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
+import AuthContext from "./context/AuthContext";
+import { useContext } from "react";
 
 export default function Register() {
+  const { registerUser} = useContext(AuthContext);
 
-  const[Name,setName]=useState('');
-  const[LastName,setLastName]=useState('');
-  const[Email,setEmail]=useState('');
-  const[Password,setPassword]=useState('');
-  const[Confirmpassword,setConfirmpassword]=useState('');
+  /// Fields
+  const [Name, setName] = useState("");
+  const [LastName, setLastName] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  const [Confirmpassword, setConfirmpassword] = useState("");
+
+  ///Alert
+  let alertInfo = { message: "!", severity: "error" };
+  const [alert, setAlert] = useState(alertInfo);
   const [open, setOpen] = React.useState(false);
+
 
   const handleClick = () => {
     setOpen(true);
   };
 
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
-
     setOpen(false);
   };
 
   const handleSubmit = (event) => {
-
     event.preventDefault();
+    if (
+      Password != "" &&
+      Confirmpassword != "" &&
+      Name != "" &&
+      LastName != "" &&
+      Email != ""
+    ) {
+      if (Password === Confirmpassword) {
+        const newUser = {
+          name: Name,
+          lastname: LastName,
+          email: Email,
+          password: Password,
+        };       
+        
+        
+        var response
+        const welcome = new Promise(function (resolve, reject) {          
+          response = registerUser(newUser);
+          resolve(response);
+        });       
 
-    if(Password===Confirmpassword)
-    {
-    const id= Math.floor(Math.random()*10000)
-    const newUser ={name:Name,lastname:LastName,email:Email,password: Password}   
-    
-      registerUser(newUser);
-      setName('');
-      setLastName('');
-      setEmail('');
-      setPassword('');
-      setConfirmpassword('');
+        welcome.then(function (response) {
+          console.log(response)  
+          if (!response.accessToken) { 
+            alertInfo = {
+                   message: response,
+                   severity: "error",
+                 };
+                 setAlert(alertInfo);
+                 setOpen(true);
+         } else { 
+          alertInfo = {
+                message: "You've almost there",
+                severity: "success",
+              };
+              setAlert(alertInfo);
+              setOpen(true);
+              // router.push('/profile/ChooseWay')
 
-    }
-    else{
+              setName("");
+              setLastName("");
+              setEmail("");
+              setPassword("");
+              setConfirmpassword("");
+         }    
+        });        
+       
+
+      } else {
+        alertInfo = {
+          message: "The password is not match to the confirm password",
+          severity: "error",
+        };
+        setAlert(alertInfo);
+        setOpen(true);
+      }
+    } else {
+      alertInfo = {
+        message: "Please fill all the fields",
+        severity: "error",
+      };
+      setAlert(alertInfo);
       setOpen(true);
     }
-       
   };
-
-  const registerUser = async (nUser) =>
-  {
-    const response = await fetch('http://localhost:8000/users',{
-      method:'POST',
-      headers:{
-        'Content-type':'application/json'
-      },
-      body: JSON.stringify(nUser)
-    })
-    const responseData = await response.json();
-  } 
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Snackbar
-        severity="error"
+        severity={alert["severity"]}
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
-        message="Note archived"
-        
+        message={alert["message"]}
       >
-        <Alert  severity="warning" sx={{ width: '100%' }}>
-          This is a success message!
+        <Alert severity={alert["severity"]} sx={{ width: "100%" }}>
+          {alert.message}
         </Alert>
       </Snackbar>
       <Box
@@ -105,6 +145,7 @@ export default function Register() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
+                value={Name}
                 autoComplete="given-name"
                 name="firstName"
                 required
@@ -113,11 +154,14 @@ export default function Register() {
                 label="First Name"
                 autoFocus
                 variant="standard"
-                onChange={(e) => {setName(e.target.value)}}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                value={LastName}
                 required
                 fullWidth
                 id="lastName"
@@ -125,11 +169,14 @@ export default function Register() {
                 name="lastName"
                 autoComplete="family-name"
                 variant="standard"
-                onChange={(e) => {setLastName(e.target.value)}}
+                onChange={(e) => {
+                  setLastName(e.target.value);
+                }}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+                value={Email}
                 required
                 fullWidth
                 id="email"
@@ -137,11 +184,14 @@ export default function Register() {
                 name="email"
                 autoComplete="email"
                 variant="standard"
-                onChange={(e) => {setEmail(e.target.value)}}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
               />
-            </Grid>           
+            </Grid>
             <Grid item xs={12}>
               <TextField
+                value={Password}
                 required
                 fullWidth
                 name="password"
@@ -150,11 +200,14 @@ export default function Register() {
                 id="password"
                 autoComplete="new-password"
                 variant="standard"
-                onChange={(e) => {setPassword(e.target.value)}}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+                value={Confirmpassword}
                 required
                 fullWidth
                 id="confirmpassword"
@@ -163,7 +216,9 @@ export default function Register() {
                 type="password"
                 autoComplete="confirmpassword"
                 variant="standard"
-                onChange={(e) => {setConfirmpassword(e.target.value)}}
+                onChange={(e) => {
+                  setConfirmpassword(e.target.value);
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -183,7 +238,7 @@ export default function Register() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/signIn" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

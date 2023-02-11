@@ -1,4 +1,4 @@
-import * as React from "react";
+import { React, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,15 +12,21 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { loadingButtonClasses } from "@mui/lab";
+import { useContext } from "react";
+import AuthContext from "./context/AuthContext";
+
 
 export default function Register() {
+
+  const { logIn } = useContext(AuthContext);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    const newarg = { email: username, password: password };
+    logIn(newarg);
   };
 
   return (
@@ -38,11 +44,10 @@ export default function Register() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Login
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
-           
             <Grid item xs={12}>
               <TextField
                 required
@@ -52,9 +57,10 @@ export default function Register() {
                 name="email"
                 autoComplete="email"
                 variant="standard"
+                onChange={(e) => setUsername(e.target.value)}
               />
             </Grid>
-          
+
             <Grid item xs={12}>
               <TextField
                 required
@@ -65,9 +71,9 @@ export default function Register() {
                 id="password"
                 autoComplete="new-password"
                 variant="standard"
+                onChange={(e) => setPassword(e.target.value)}
               />
             </Grid>
-           
           </Grid>
           <Button
             type="submit"
@@ -79,7 +85,7 @@ export default function Register() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/register" variant="body2">
                 Don't have an account? Sign Up
               </Link>
             </Grid>
