@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   //Register
   const registerUser = async (nUser) => { 
     
-    const response = await fetch("http://localhost:8000/users", {
+    const response = await fetch("/api/register", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

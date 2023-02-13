@@ -69,8 +69,8 @@ export default function Register() {
         });       
 
         welcome.then(function (response) {
-          console.log(response)  
-          if (!response.accessToken) { 
+          
+          if (!response.state) { 
             alertInfo = {
                    message: response,
                    severity: "error",
