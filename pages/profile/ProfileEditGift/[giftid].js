@@ -54,7 +54,7 @@ export default function ProfileAddGiftBar() {
       setGdesc(gift["description"]);
     };
     req();
-  }, []);
+  }, [giftid]);
 
   const updateProduct = async (product) =>
   {

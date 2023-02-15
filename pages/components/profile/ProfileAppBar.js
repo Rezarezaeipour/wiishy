@@ -27,14 +27,23 @@ import MailIcon from "@mui/icons-material/Mail";
 import Divider from "@mui/material/Divider";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { red } from "@mui/material/colors";
+import { useContext } from "react";
+import AuthContext from "../../context/AuthContext";
+import { useRouter } from "next/router";
 
 export default function ProfileAppBar() {
+  const router = useRouter();
+  // const { logOut } = useContext(AuthContext);
   const [state, setState] = React.useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
   });
+
+  const handLogout = () => {
+   // logOut();
+  };
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -44,6 +53,7 @@ export default function ProfileAppBar() {
     ) {
       return;
     }
+    
     setState({ ...state, [anchor]: open });
   };
 
@@ -51,7 +61,7 @@ export default function ProfileAppBar() {
     <React.Fragment>
       <CssBaseline />
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="fixed" elevation="0">
+        <AppBar position="fixed" sx={{ boxShadow:'0px 0px 0px #fff'}}>
           <Toolbar
             sx={{
               display: "flex",
@@ -104,56 +114,62 @@ export default function ProfileAppBar() {
                   onKeyDown={toggleDrawer("bottom", false)}
                 >
                   <List>
-                    <ListItem disablePadding xs={{ width: "100%" }}>
-                      <Link href={"/profile/EditProfile"}>
-                        <CardHeader
-                          avatar={
-                            <Avatar
-                              sx={{ bgcolor: red[500] }}
-                              aria-label="recipe"
-                            >
-                              R
-                            </Avatar>
-                          }
-                          action={
-                            <IconButton aria-label="settings">
-                              <MoreVertIcon />
-                            </IconButton>
-                          }
-                          title="Reza Rezaei pour"
-                          subheader="February 4, 2023"
-                        />
-                      </Link>
+                    <ListItem
+                      disablePadding
+                      xs={{ width: "100%" }}
+                      onClick={() => router.push("/profile/EditProfile")}
+                      
+                    >
+                      <CardHeader
+                        avatar={
+                          <Avatar
+                            sx={{ bgcolor: red[500] }}
+                            aria-label="recipe"
+                          >
+                            R
+                          </Avatar>
+                        }
+                        action={
+                          <IconButton aria-label="settings">
+                            <MoreVertIcon />
+                          </IconButton>
+                        }
+                        title="Reza Rezaei pour"
+                        subheader="February 4, 2023"
+                      />
                     </ListItem>
-                    <ListItem disablePadding>
-                      <Link href={"/profile/ProfileGiftList"}>
-                        <ListItemButton>
-                          <ListItemIcon>
-                            <InboxIcon />
-                          </ListItemIcon>
-                          <ListItemText primary="My Wish List" />
-                        </ListItemButton>
-                      </Link>
+                    <ListItem
+                      disablePadding
+                      onClick={() => router.push("/profile/ProfileGiftList")}
+                    >
+                      <ListItemButton>
+                        <ListItemIcon>
+                          <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="My Wish List" />
+                      </ListItemButton>
                     </ListItem>
-                    <ListItem disablePadding>
-                      <Link href={"/profile/ProfileAddGift"}>
-                        <ListItemButton>
-                          <ListItemIcon>
-                            <InboxIcon />
-                          </ListItemIcon>
-                          <ListItemText primary="Add Wish Gifts & things" />
-                        </ListItemButton>
-                      </Link>
+                    <ListItem
+                      disablePadding
+                      onClick={() => router.push("/profile/ProfileAddGift")}
+                    >
+                      <ListItemButton>
+                        <ListItemIcon>
+                          <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Add Wish Gifts & things" />
+                      </ListItemButton>
                     </ListItem>
-                    <ListItem disablePadding>
-                      <Link href={"/profile/ProfileAddGift"}>
-                        <ListItemButton>
-                          <ListItemIcon>
-                            <InboxIcon />
-                          </ListItemIcon>
-                          <ListItemText primary="Add Unwanted Gifts & things" />
-                        </ListItemButton>
-                      </Link>
+                    <ListItem
+                      disablePadding
+                      onClick={() => router.push("/profile/ProfileAddGift")}
+                    >
+                      <ListItemButton>
+                        <ListItemIcon>
+                          <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Add Unwanted Gifts & things" />
+                      </ListItemButton>
                     </ListItem>
                   </List>
 
@@ -174,7 +190,7 @@ export default function ProfileAppBar() {
 
                   <List>
                     <ListItem disablePadding>
-                      <ListItemButton>
+                      <ListItemButton onClick={handLogout}>
                         <ListItemIcon>
                           <MailIcon />
                         </ListItemIcon>

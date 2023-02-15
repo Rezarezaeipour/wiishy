@@ -6,7 +6,9 @@ import { useState,useEffect } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-
+  useEffect(()=> {
+    loginCheck ()
+  },[])
    
   //Register
   const registerUser = async (nUser) => { 
@@ -24,22 +26,35 @@ export const AuthProvider = ({ children }) => {
   };
 
   //Login
-  const logIn = async (args) => {
-    const reponse = await fetch("http://localhost:8000/login", {
+  const logIn = async (nUser) => { 
+    
+    const response = await fetch("/api/login", {
       method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(args),
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(nUser),
     });
-    const ResponseDT = await reponse.json();
-    setRespp(ResponseDT)
+    const responseData = await response.json();  
+    console.log(responseData)
+    return(responseData)
+   
   };
 
   //LogOut
+  const logOut = async (nUser) => {
+    console.log('hiBye')
+  }
 
   //IsLoggedIn
+  const loginCheck = async () => {     
+    const response = await fetch("/api/loginCheck");
+    const responseData = await response.json();   
+    
+  };
 
   return (
-    <AuthContext.Provider value={{ registerUser }}>
+    <AuthContext.Provider value={{ registerUser,logIn,logOut,loginCheck }}>
       {children}
     </AuthContext.Provider>
   );

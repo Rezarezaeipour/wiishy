@@ -2,9 +2,7 @@ import { Paper } from "@mui/material";
 
 export default function WishPaper(props) {
 
-    <Paper
-    
-    >
+    <Paper>
       props.children;
     </Paper>
 

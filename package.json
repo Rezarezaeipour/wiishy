@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "server": "json-server --watch dbwiishy.json --port 8888",
-    "serverauth": "json-server db.json -m ./node_modules/json-server-auth --port 8000"
+    "serverauth": "json-server db.json -m ./node_modules/json-server-auth --port 8000",
+    "serverroute": "json-server db.json -m ./node_modules/json-server-auth -r routes.json"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.5",
@@ -21,9 +22,11 @@
     "@mui/material": "^5.11.2",
     "@mui/x-date-pickers": "^5.0.12",
     "@next/font": "13.1.1",
+    "cookie": "^0.5.0",
     "dayjs": "^1.11.7",
     "eslint": "8.30.0",
     "eslint-config-next": "13.1.1",
+    "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
     "next": "13.1.1",
     "react": "18.2.0",
