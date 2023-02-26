@@ -1,6 +1,7 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "../styles/globals.css";
 import { AuthProvider } from "./context/AuthContext";
+import { SessionProvider } from "next-auth/react";
 
 const wiishyTheme = createTheme({
   palette: {
@@ -65,12 +66,14 @@ const wiishyTheme = createTheme({
   },
 });
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <ThemeProvider theme={wiishyTheme}>
-      <AuthProvider>
+      <SessionProvider session={session}>
+        {/* <AuthProvider> */}
         <Component {...pageProps} />
-      </AuthProvider>
+        {/* </AuthProvider> */}
+      </SessionProvider>
     </ThemeProvider>
   );
 }

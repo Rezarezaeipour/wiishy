@@ -19,14 +19,14 @@ import AuthContext from "./context/AuthContext";
 
 export default function Register() {
 
-  const { logIn } = useContext(AuthContext);
+  // const { logIn }  = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const newarg = { email: username, password: password };
-    logIn(newarg);
+    // logIn(newarg);    
   };
 
   return (
@@ -86,7 +86,7 @@ export default function Register() {
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="/register" variant="body2">
-                Don't have an account? Sign Up
+                Dont have an account? Sign Up
               </Link>
             </Grid>
           </Grid>

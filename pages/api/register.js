@@ -25,19 +25,15 @@ export default async function handler(req, res) {
       res.json(responseData)  
     }else
     { 
-
-       //Here we save our token in Cookie with http only access. These are part of our procedures to secure our user's information
+    //Here we save our token in Cookie with http only access. These are part of our procedures to secure our user's information
     //Find cookie package here: https://www.npmjs.com/package/cookie   
       
-      res.setHeader('Set-Cookie',cookie.serialize('Token', responseData.accessToken, {
+      res.setHeader('Set-Cookie',cookie.serialize('wiishytoken', responseData.accessToken, {
       httpOnly: true,
       maxAge: 60 * 60 * 24 * 7 // 1 week
     }))
     res.json({state:'ok'})  
-
-    }   
-
-   
+    } 
 
   } 
 }

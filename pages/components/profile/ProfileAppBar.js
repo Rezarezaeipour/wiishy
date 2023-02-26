@@ -33,7 +33,7 @@ import { useRouter } from "next/router";
 
 export default function ProfileAppBar() {
   const router = useRouter();
-  // const { logOut } = useContext(AuthContext);
+ const { logOut } = useContext(AuthContext);
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -42,7 +42,7 @@ export default function ProfileAppBar() {
   });
 
   const handLogout = () => {
-   // logOut();
+    logOut();
   };
 
   const toggleDrawer = (anchor, open) => (event) => {

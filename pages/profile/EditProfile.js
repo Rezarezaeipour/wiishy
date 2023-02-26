@@ -464,7 +464,7 @@ export default function EditProfile() {
   ];
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4, mt: 12 }}>
-      <ProfileAppBar></ProfileAppBar>
+      {/* <ProfileAppBar></ProfileAppBar> */}
 
       <Paper
         elevation={0}

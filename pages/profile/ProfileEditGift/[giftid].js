@@ -67,7 +67,7 @@ export default function ProfileAddGiftBar() {
 
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4, mt: 12 }}>
-      <ProfileAppBar></ProfileAppBar>
+      {/* <ProfileAppBar></ProfileAppBar> */}
       <Paper elevation={0} sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 5 }}>
           <Grid container spacing={2}>

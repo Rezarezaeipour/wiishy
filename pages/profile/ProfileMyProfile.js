@@ -40,7 +40,7 @@ export default function ProfileMyProfile() {
   };
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 12, mt: 10 }}>
-      <ProfileAppBar></ProfileAppBar>
+      {/* <ProfileAppBar></ProfileAppBar> */}
       <Paper
         elevation={0}
         sx={{ my: { xs: 3, md: 6 }, p: { xs: 0, md: 0 } }}

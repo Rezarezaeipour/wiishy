@@ -17,7 +17,7 @@ export default function SuccessfulAdd() {
   return (
     <ThemeProvider theme={theme} >
       <CssBaseline />
-      <ProfileAppBar></ProfileAppBar>
+      {/* <ProfileAppBar></ProfileAppBar> */}
 
       <Container component="main" maxWidth="sm" sx={{ mb: 4, mt:10  }}>
         <Paper
