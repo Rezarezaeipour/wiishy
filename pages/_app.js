@@ -2,6 +2,13 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "../styles/globals.css";
 import { AuthProvider } from "./context/AuthContext";
 import { SessionProvider } from "next-auth/react";
+import { Ubuntu } from "@next/font/google";
+
+
+const ubuntu = Ubuntu({
+  weight: '400',
+  subsets: ['latin'],
+})
 
 const wiishyTheme = createTheme({
   palette: {
@@ -64,16 +71,24 @@ const wiishyTheme = createTheme({
       },
     },
   },
+  typography: {
+    fontFamily: ubuntu,
+  },
 });
 
-export default function App({ Component, pageProps: { session, ...pageProps } }) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   return (
     <ThemeProvider theme={wiishyTheme}>
-      <SessionProvider session={session}>
-        {/* <AuthProvider> */}
-        <Component {...pageProps} />
-        {/* </AuthProvider> */}
-      </SessionProvider>
+      <main className={ubuntu.className}>
+        <SessionProvider session={session}>
+          {/* <AuthProvider> */}
+          <Component {...pageProps} />
+          {/* </AuthProvider> */}
+        </SessionProvider>
+      </main>
     </ThemeProvider>
   );
 }

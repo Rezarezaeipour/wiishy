@@ -27,13 +27,22 @@ import MailIcon from "@mui/icons-material/Mail";
 import Divider from "@mui/material/Divider";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { red } from "@mui/material/colors";
-import { useContext } from "react";
-import AuthContext from "../../context/AuthContext";
 import { useRouter } from "next/router";
+import { signOut } from "next-auth/react";
+import { useSession } from "next-auth/react"
+
 
 export default function ProfileAppBar() {
+
+  // const { data, status } = useSession()
+  // useEffect(()=> {   
+ 
+  // if (status === "loadign") { return  <p>Loading...</p> }
+  // if (status !== "authenticated") { return router.push("/signIn") }
+   
+  // }) 
+  
   const router = useRouter();
- const { logOut } = useContext(AuthContext);
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -42,7 +51,7 @@ export default function ProfileAppBar() {
   });
 
   const handLogout = () => {
-    logOut();
+    signOut({ callbackUrl: '/signIn' })
   };
 
   const toggleDrawer = (anchor, open) => (event) => {
