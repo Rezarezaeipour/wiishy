@@ -61,13 +61,11 @@ export default function Register() {
         <Box component="form" sx={{ mt: 3 }}>
           <Grid container spacing={2}></Grid>
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            onClick={() =>
-              signIn("google", {callbackUrl: "http://localhost:3000/profile/ChooseWay",
-              })
+            onClick={() => signIn("google", {callbackUrl: 'http://localhost:3000/profile/ChooseWay'},)
             }
           >
             Sign in with Google

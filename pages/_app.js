@@ -82,13 +82,11 @@ export default function App({
 }) {
   return (
     <ThemeProvider theme={wiishyTheme}>
-      <main className={ubuntu.className}>
-        <SessionProvider session={session}>
-          {/* <AuthProvider> */}
-          <Component {...pageProps} />
-          {/* </AuthProvider> */}
-        </SessionProvider>
+      <SessionProvider session={session}> 
+      <main className={ubuntu.className}>              
+          <Component {...pageProps} /> 
       </main>
+      </SessionProvider>
     </ThemeProvider>
   );
 }
