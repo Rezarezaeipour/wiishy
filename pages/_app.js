@@ -1,6 +1,5 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "../styles/globals.css";
-import { AuthProvider } from "./context/AuthContext";
 import { SessionProvider } from "next-auth/react";
 import { Ubuntu } from "@next/font/google";
 

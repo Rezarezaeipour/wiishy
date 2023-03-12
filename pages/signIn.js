@@ -14,7 +14,6 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { loadingButtonClasses } from "@mui/lab";
 import { useContext } from "react";
-import AuthContext from "./context/AuthContext";
 import { signIn } from "next-auth/react";
 
 export default function Register() {
