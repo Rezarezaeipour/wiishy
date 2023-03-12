@@ -21,10 +21,11 @@ export default function ChooseWay() {
   if (status === "authenticated") {
 
     return (
-      <Container component="main" maxWidth="sm" sx={{ mb: 4, mt: 12 }}>     
+      <Container component="main" maxWidth="sm" sx={{ mb: 4, mt: 12 }}> 
+        <CssBaseline />    
         <ProfileAppBar></ProfileAppBar>
-        <Paper elevation={0} sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-          <Box sx={{ mt: 5 }}>
+        <Paper elevation={0} sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }  }}>
+          <Box sx={{ mt: 5, border:'solid thin red' }}>
             <Grid container spacing={2}>
               <Grid
                 item

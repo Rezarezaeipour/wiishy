@@ -51,7 +51,7 @@ export default function SuccessfulAdd() {
                   sx={{ mt: 3, mb: 2, width: "100%" , mx:'auto' }}
                   xs={6}
                 >
-                  Let's see profile
+                  Lets see profile
                 </Button>
               </Grid> 
 
