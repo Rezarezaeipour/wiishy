@@ -42,7 +42,7 @@ export default function ProfileAddGiftBar() {
   };
 
   useEffect(() => {
-    const req = async () => {
+      const req = async () => {
       const res = await fetch("http://localhost:8888/gifts");
       const responsData = await res.json();
 

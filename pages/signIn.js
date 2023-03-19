@@ -15,9 +15,14 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { loadingButtonClasses } from "@mui/lab";
 import { useContext } from "react";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
+
 
 export default function Register() {
-  return (
+
+  const router = useRouter();
+
+  return (    
     <Container component="main" maxWidth="xs" sx={{ height: "100vh" }}>
       <CssBaseline />
       <Box
@@ -64,8 +69,8 @@ export default function Register() {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            onClick={() => signIn("google", {callbackUrl: 'http://localhost:3000/profile/ChooseWay'},)
-            }
+            // onClick={() => signIn("google", {callbackUrl: 'http://localhost:3000/profile/ChooseWay'},) }
+            onClick={()=> router.push("/profile/Explore")}
           >
             Sign in with Google
           </Button>

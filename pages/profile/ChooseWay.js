@@ -18,11 +18,11 @@ export default function ChooseWay() {
   const { data: session, status } = useSession()
   const router = useRouter();
 
-  if (status === "authenticated") {
+  // if (status === "authenticated") {
 
     return (
       <Container component="main" maxWidth="sm" sx={{ mb: 4, mt: 12 }}> 
-        <CssBaseline />    
+        
         <ProfileAppBar></ProfileAppBar>
         <Paper elevation={0} sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }  }}>
           <Box sx={{ mt: 5, border:'solid thin red' }}>
@@ -70,14 +70,14 @@ export default function ChooseWay() {
         </Paper>
       </Container>
     );
-  }
+  // }
 
   // return   <Link href="/api/auth/signin">Sign in</Link>  
   // return ( () => {   router.push("/signIn") } )
   
-   return (  
-    <Container component="main" maxWidth="sm" sx={{ mb: 4, mt: 12 }}>     
-      <AccessDenied></AccessDenied>
-    </Container>
-   )
+  //  return (  
+  //   <Container component="main" maxWidth="sm" sx={{ mb: 4, mt: 12 }}>     
+  //     <AccessDenied></AccessDenied>
+  //   </Container>
+  //  )
 }

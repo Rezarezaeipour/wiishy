@@ -23,8 +23,8 @@ export default function MasonaryGifts(props) {
     const req = async () => {
       const res = await fetch("http://localhost:8888/gifts");
       const responsData = await res.json();
-      const gifts = responsData.filter((p) => p.profileid == props.userId);
-      setGlist(gifts);
+      // const gifts = responsData.filter((p) => p.profileid == props.userId);
+      setGlist(responsData);
     };
     req();
   }, [props.userId]);

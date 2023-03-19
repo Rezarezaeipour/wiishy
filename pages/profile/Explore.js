@@ -4,14 +4,14 @@ import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
-import ProfileAppBar from "./components/profile/ProfileAppBar";
+import ProfileAppBar from "../components/profile/ProfileAppBar";
 import { orange, purple, red } from "@mui/material/colors";
-import MasonaryGifts from "./components/general/MasonaryGifts";
+import MasonaryGifts from "../components/general/MasonaryGifts";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import BottomNav from "./components/general/BottomNav"
+import BottomNav from "../components/general/BottomNav"
 
 
 
