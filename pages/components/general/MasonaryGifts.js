@@ -56,7 +56,7 @@ export default function MasonaryGifts(props) {
 
       {glist.map((item) => (
         <div key={item.id} >
-          <Link href={`/profile/ProfileEditGift/${item.id}`}>
+          <Link href={`/profile/GiftPage/${item.id}`}>
             <Card sx={{ maxWidth: 345, mb:2 }}>
               <CardActionArea>
                 <CardMedia

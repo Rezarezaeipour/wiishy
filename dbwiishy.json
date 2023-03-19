@@ -2,7 +2,7 @@
   "gifts": [
     {
       "id": 9970,
-      "profileid": 444,
+      "profileid": 48,
       "link": "https://amazon.com/products/djfhs",
       "name": "Samsung S21, Global Version 5G",
       "price": "$725",
@@ -12,7 +12,7 @@
     },
     {
       "id": 9971,
-      "profileid": 444,
+      "profileid": 47,
       "link": "https://amazon.com/products/djfhs",
       "name": "Mini Suit- balck color",
       "price": "$16",
@@ -30,5 +30,18 @@
       "desire": "3",
       "photourl": 0
     }
-  ]
+  ],
+  "users": [
+    {
+      "email": "rezarezaeipour1364@gmail.com",
+      "password": "$2a$10$DcxmR5csOQUyLCIzaxAhdeUxY3TgYpPOg96/3x4SDCzKz8jTeNYRy",
+       "name":"Reza",
+       "lastname":"Rezaeipour",
+      "id": 47
+    },
+    {
+      "email": "uhuihui@uhiu.coj",
+      "password": "$2a$10$yb9LBloiR/AZnwk9p4hHou5SAD4wIYAeYvZOvXlcOvd1DpGaNdcE.",
+      "id": 48
+    }]
 }

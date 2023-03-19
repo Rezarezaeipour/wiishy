@@ -75,6 +75,7 @@ export default function ProfileEditGift() {
 
       <Container component="main" maxWidth="sm" sx={{ mb: 12, mt: 10 }}>
         <Paper elevation={0} sx={{ my: { xs: 3, md: 6 }, p: { xs: 0, md: 0 } }}>
+          <Link href={`/profile/${gift.profileid}`}>
           <CardHeader
             avatar={
               <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -89,6 +90,7 @@ export default function ProfileEditGift() {
             title={gift.name}
             subheader="September 14, 2016"
           />
+          </Link>
           <Box sx={{ mt: 0 }}>
             <Grid container spacing={2} sx={{ mb: 3 }}>
               <Grid
@@ -109,15 +111,15 @@ export default function ProfileEditGift() {
                 />
               </Grid>
 
-              <Grid
-               
-                xs={12}
-                pr={2}
-                direction="column"
+              <Grid                
+                
+                p={4}
+                pt={1}
+                direction="column"              
               >
                 <Grid item>
                   <Rating
-                    sx={{ ml: 2 }}
+                    sx={{ ml: 0, mb:3 }}
                     name="size-medium"
                     max={5}
                     readOnly={true}
@@ -125,10 +127,7 @@ export default function ProfileEditGift() {
                   />
                 </Grid>
 
-
-
-                <Grid
-                  item
+                <Grid item
                   xs={12}
                   container
                   direction="row"
@@ -220,8 +219,6 @@ export default function ProfileEditGift() {
                   </Typography>
                 </Grid>
 
-
-
                 {/* <Grid item>
                   <Badge
                     color="secondary"
@@ -240,62 +237,7 @@ export default function ProfileEditGift() {
             </Grid>
           </Box>
         </Paper>
-
-        <Paper elevation={0} sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-          <TabContext value={value}>
-            <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
-              <Tabs value={value} onChange={handleChange} centered>
-                <Tab label="Details" value="1" />
-                <Tab label="Viewed" value="2" />
-              </Tabs>
-            </Box>
-
-            {/* TAB ONE */}
-            <TabPanel value="1">
-              <Grid container spacing={2} sx={{ mb: 3 }}>
-               
-              </Grid>
-            </TabPanel>
-
-            {/* TAB TWO */}
-            <TabPanel value="2">
-              <List
-                sx={{
-                  width: "100%",
-                  maxWidth: 360,
-                  bgcolor: "background.paper",
-                }}
-              >
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <ImageIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText primary="Photos" secondary="Jan 9, 2014" />
-                </ListItem>
-                <Divider variant="inset" component="li" />
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <WorkIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText primary="Work" secondary="Jan 7, 2014" />
-                </ListItem>
-                <Divider variant="inset" component="li" />
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <BeachAccessIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText primary="Vacation" secondary="July 20, 2014" />
-                </ListItem>
-              </List>
-            </TabPanel>
-          </TabContext>
-        </Paper>
+      
       </Container>
       <AppBar
         position="fixed"

@@ -5,17 +5,19 @@ import Paper from "@mui/material/Paper";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import { Avatar, Button, Divider, Typography } from "@mui/material";
-import ProfileAppBar from "./components/profile/ProfileAppBar";
+import ProfileAppBar from "../../components/profile/ProfileAppBar";
 import { orange, purple, red } from "@mui/material/colors";
 import { Stack } from "@mui/system";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import MasonaryGifts from "./components/general/MasonaryGifts";
+import MasonaryGifts from "../../components/general/MasonaryGifts";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import AddIcon from '@mui/icons-material/Add';
-import BottomNav from "./components/general/BottomNav"
+import BottomNav from "../../components/general/BottomNav"
+import { useRouter } from "next/router";
+
 
 const theme = createTheme({
   palette: {
@@ -26,13 +28,28 @@ const theme = createTheme({
 });
 
 export default function Profile() {
+
+  const router= useRouter();
+  const {pid} = router.query;
   const [value, setValue] = React.useState("1");
+  const [profile, setProfile] = React.useState({});
+
+  React.useEffect(()=>{
+    const req = async () => {
+      const res = await fetch(`http://localhost:8888/users/${pid}`);
+      const responseData = await res.json();
+      setProfile(responseData); 
+    };
+    req();
+  
+  },[pid,setProfile]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   return (
-    <ThemeProvider >
+    <>
       <ProfileAppBar></ProfileAppBar>
 
       <Container component="main" maxWidth="sm" sx={{ mb: 12, mt: 10 }}>
@@ -50,14 +67,14 @@ export default function Profile() {
             >
               <Avatar
                 alt="Remy Sharp"
-                src="/static/images/avatar/1.jpg"
+                src={`/static/images/avatar/${profile.id}.jpg`}
                 sx={{ width: 100, height: 100 }}
               />
               <Typography component="div" sx={{ textAlign: "center" }}>
                 <Box
                   sx={{ textTransform: "uppercase", m: 1, fontWeight: "bold" }}
                 >
-                  Reza Rezaeipour
+                  {profile.name}&nbsp;{profile.lastname}
                 </Box>
                 {/* <Box sx={{ textTransform: "lowercase", m: 1 }}>37</Box> */}
                 <Box sx={{ textTransform: "lowercase", m: 0 }}>
@@ -120,6 +137,6 @@ export default function Profile() {
         </Paper>
         <BottomNav/>
       </Container>
-    </ThemeProvider>
+    </>
   );
 }
