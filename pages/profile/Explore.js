@@ -22,9 +22,7 @@ export default function Profile() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  return (
-
-     
+  return (     
 
     <Container component="main" maxWidth="sm" sx={{ mb: 12, mt: 10 }}>
        <ProfileAppBar></ProfileAppBar>

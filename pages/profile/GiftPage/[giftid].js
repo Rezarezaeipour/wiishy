@@ -107,7 +107,7 @@ export default function ProfileEditGift() {
                     width: "100%",
                   }}
                   alt={gift.name}
-                  src={`/giftimages/${gift.id}.jpg`}
+                  src={`/giftimages/${gift.photourl}.jpg`}
                 />
               </Grid>
 
