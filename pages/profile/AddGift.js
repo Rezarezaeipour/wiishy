@@ -1,20 +1,17 @@
 import * as React from "react";
-import CssBaseline from "@mui/material/CssBaseline";
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import Toolbar from "@mui/material/Toolbar";
 import Paper from "@mui/material/Paper";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Autocomplete, Button, Typography } from "@mui/material";
 import UploadButtons from "../components/general/UploadButtons";
 import ProfileAvatar from "../components/general/ProfileAvatar.js";
 import ProfileAppBar from "../components/profile/ProfileAppBar";
 import DesireSlider from "../components/general/DesireSlider";  
 import { useState } from "react";
+import BottomNav from "../components/profile/BottomNav"
 
 const theme = createTheme();
 
@@ -56,7 +53,7 @@ export default function ProfileAddGiftBar() {
      
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4, mt: 12 }}>
-      {/* <ProfileAppBar></ProfileAppBar> */}
+      <ProfileAppBar></ProfileAppBar>
       <Paper elevation={0} sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
@@ -157,6 +154,7 @@ export default function ProfileAddGiftBar() {
           </Grid>
         </Box>
       </Paper>
+      <BottomNav/>
     </Container>
   );
 }

@@ -22,25 +22,26 @@ import {
   Typography,
 } from "@mui/material";
 import ProfileAppBar from "../components/profile/ProfileAppBar";
-import { orange, purple, red } from "@mui/material/colors";
 import { Stack } from "@mui/system";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import MasonaryGifts from "../components/general/MasonaryGifts";
-import ProfileAddGiftBar from "../components/profile/ProfileAddGiftBar";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
+import BottomNav from "../components/profile/BottomNav";
+import { useRouter } from "next/router";
 
 export default function ProfileMyProfile() {
   const [value, setValue] = React.useState("1");
+  const router = useRouter();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 12, mt: 10 }}>
-      {/* <ProfileAppBar></ProfileAppBar> */}
+      <ProfileAppBar></ProfileAppBar>
       <Paper
         elevation={0}
         sx={{ my: { xs: 3, md: 6 }, p: { xs: 0, md: 0 } }}
@@ -91,7 +92,7 @@ export default function ProfileMyProfile() {
                 </Stack>
               </Box>
               <Box component="div" sx={{ mt: 2 }}>
-                <Button variant="contained">Edit Profile</Button>
+                <Button variant="contained" onClick={()=> router.push("/profile/EditProfile") }>Edit Profile</Button>
               </Box>
             </Typography>
           </Stack>
@@ -121,6 +122,7 @@ export default function ProfileMyProfile() {
           </TabContext>
         </Box>
       </Paper>
+      <BottomNav/>
     </Container>
   );
 }

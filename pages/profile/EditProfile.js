@@ -18,6 +18,7 @@ import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import UploadButtons from "../components/general/UploadButtons";
 import ProfileAvatar from "../components/general/ProfileAvatar.js";
 import ProfileAppBar from "../components/profile/ProfileAppBar";
+import BottomNav from "../components/profile/BottomNav"
 
 export default function EditProfile() {
   const handleSubmit = (event) => {
@@ -464,8 +465,7 @@ export default function EditProfile() {
   ];
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4, mt: 12 }}>
-      {/* <ProfileAppBar></ProfileAppBar> */}
-
+      <ProfileAppBar></ProfileAppBar>
       <Paper
         elevation={0}
         sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
@@ -592,6 +592,7 @@ export default function EditProfile() {
           </Grid>
         </Box>
       </Paper>
+      <BottomNav/>
     </Container>
   );
 }
