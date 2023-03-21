@@ -28,11 +28,6 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import AppBar from "@mui/material/AppBar";
 import DeleteButton from "../../components/profile/DeleteButton";
 import { orange, purple, red } from "@mui/material/colors";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import { TabPanel } from "@mui/lab";
-import TabContext from "@mui/lab/TabContext";
-import ShareIcon from "../../components/profile/ShareButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ImageIcon from "@mui/icons-material/Image";
 import WorkIcon from "@mui/icons-material/Work";
@@ -40,6 +35,7 @@ import BeachAccessIcon from "@mui/icons-material/BeachAccess";
 import ShareButton from "../../components/profile/ShareButton";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import BottomNav from "../../components/general/BottomNav";
 
 const theme = createTheme({
   palette: {
@@ -68,28 +64,26 @@ export default function ProfileEditGift() {
     setValue(newValue);
   };
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-
-      <ProfileAppBar></ProfileAppBar>
-
+  
+   
       <Container component="main" maxWidth="sm" sx={{ mb: 12, mt: 10 }}>
+        <ProfileAppBar></ProfileAppBar>
         <Paper elevation={0} sx={{ my: { xs: 3, md: 6 }, p: { xs: 0, md: 0 } }}>
-          <Link href={`/profile/${gift.profileid}`}>
-          <CardHeader
-            avatar={
-              <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                R
-              </Avatar>
-            }
-            action={
-              <IconButton aria-label="settings">
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title={gift.name}
-            subheader="September 14, 2016"
-          />
+          <Link href={`/profile/Profile/${gift.profileid}`}>
+            <CardHeader
+              avatar={
+                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                  R
+                </Avatar>
+              }
+              action={
+                <IconButton aria-label="settings">
+                  <MoreVertIcon />
+                </IconButton>
+              }
+              title={gift.name}
+              subheader="September 14, 2016"
+            />
           </Link>
           <Box sx={{ mt: 0 }}>
             <Grid container spacing={2} sx={{ mb: 3 }}>
@@ -111,15 +105,10 @@ export default function ProfileEditGift() {
                 />
               </Grid>
 
-              <Grid                
-                
-                p={4}
-                pt={1}
-                direction="column"              
-              >
+              <Grid p={4} pt={1} direction="column">
                 <Grid item>
                   <Rating
-                    sx={{ ml: 0, mb:3 }}
+                    sx={{ ml: 0, mb: 3 }}
                     name="size-medium"
                     max={5}
                     readOnly={true}
@@ -127,7 +116,8 @@ export default function ProfileEditGift() {
                   />
                 </Grid>
 
-                <Grid item
+                <Grid
+                  item
                   xs={12}
                   container
                   direction="row"
@@ -237,29 +227,8 @@ export default function ProfileEditGift() {
             </Grid>
           </Box>
         </Paper>
-      
+        <BottomNav sx={{ border:"solid thin red" }} />
       </Container>
-      <AppBar
-        position="fixed"
-        color="secondary"
-        sx={{ top: "auto", bottom: 0 }}
-      >
-        <Toolbar>
-          <Box
-            sx={{
-              position: "absolute",
-              zIndex: 1,
-              top: -30,
-              left: 0,
-              right: 0,
-              margin: "0 auto",
-            }}
-            color="secondary"
-            aria-label="add"
-          ></Box>
-          <Box sx={{ flexGrow: 1 }} />
-        </Toolbar>
-      </AppBar>
-    </Container>
+ 
   );
 }
