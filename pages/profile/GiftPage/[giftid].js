@@ -35,7 +35,7 @@ import BeachAccessIcon from "@mui/icons-material/BeachAccess";
 import ShareButton from "../../components/profile/ShareButton";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import BottomNav from "../../components/general/BottomNav";
+import BottomNav from "../../components/profile/BottomNav";
 
 const theme = createTheme({
   palette: {
