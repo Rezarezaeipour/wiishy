@@ -34,7 +34,7 @@ export default function BottonNav() {
         }}
       >
         <BottomNavigationAction onClick={() => router.push("/")} label="Home" icon={<HomeIcon />} sx={{pr:3}}/>
-        <BottomNavigationAction onClick={() => router.push("/Explore")} label="Explore" icon={<SearchIcon />} sx={{pr:3}}/>
+        <BottomNavigationAction onClick={() => router.push("/profile/Explore")} label="Explore" icon={<SearchIcon />} sx={{pr:3}}/>
         <StyledFab onClick={() => router.push("/profile/AddGift")} color="secondary" aria-label="add">
           <AddIcon />
         </StyledFab>
@@ -42,6 +42,6 @@ export default function BottonNav() {
         <BottomNavigationAction onClick={() => router.push("/profile/MyProfile")} label="Profile" icon={<PersonIcon />} sx={{pr:6}}/>
        
       </BottomNavigation>
-    </Paper>
+    </Paper> 
   );
 }

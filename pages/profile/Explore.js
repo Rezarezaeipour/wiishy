@@ -14,8 +14,6 @@ import TabPanel from "@mui/lab/TabPanel";
 import BottomNav from "../components/profile/BottomNav"
 
 
-
-
 export default function Profile() {
   const [value, setValue] = React.useState("1");
 

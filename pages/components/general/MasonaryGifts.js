@@ -14,20 +14,19 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import ApiContext from "../../../context/ApiContext";
+import { useContext } from "react";
 
 export default function MasonaryGifts(props) {
+
+  const { giftsoffollowings } = useContext(ApiContext);
   const themee = useTheme();
   const [glist, setGlist] = React.useState([]);
 
   useEffect(() => {
-    const req = async () => {
-      const res = await fetch("http://localhost:8888/gifts");
-      const responsData = await res.json();
-      // const gifts = responsData.filter((p) => p.profileid == props.userId);
-      setGlist(responsData);
-    };
-    req();
-  }, [props.userId]);
+     // Here we load all gifts of following 
+     giftsoffollowings(10);
+  }, [giftsoffollowings]);
 
   return (
     <Box component="div">
