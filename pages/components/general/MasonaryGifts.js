@@ -24,12 +24,13 @@ export default function MasonaryGifts(props) {
   const [glist, setGlist] = React.useState([]);
 
   useEffect(() => {
-     // Here we load all gifts of following 
-     giftsoffollowings(10);
+     //Here we load all gifts of following 
+     giftsoffollowings(1)     
   }, [giftsoffollowings]);
 
   return (
     <Box component="div">
+      
       {/* <Masonry columns={2} spacing={1}>
         {glist.map((item) => (
           <div key={item.id}>
