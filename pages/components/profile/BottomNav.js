@@ -27,7 +27,7 @@ export default function BottonNav() {
       elevation={3}
     >
       <BottomNavigation
-        showLabels
+        // showlabels
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);

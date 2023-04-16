@@ -75,9 +75,11 @@ export default function ProfileAppBar() {
               color="inherit"
               aria-label="open drawer"
               sx={{ mr: 2 }}
+
+              onClick={() => router.back()}
             >
               {router.pathname !== "/" && (
-                <ArrowBackIcon onClick={() => router.back()} />
+                <ArrowBackIcon />
               )}
             </IconButton>
             <Typography variant="h6" noWrap component="div">

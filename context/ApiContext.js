@@ -1,15 +1,11 @@
-import { createContext } from "react";
-
+import { createContext, useState } from "react";
 const ApiContext = createContext();
 
-export const ApiProvider = ({ children }) => {
-
-
-
+export const ApiProvider = ({ children }) => {   
+ 
   // load followers gifts
-  const giftsoffollowings = async (userId) => {
-     
-     const req = async () => {
+  const giftsoffollowings = async (userId) => {     
+   
       const res = await fetch("/api/giftsoffollowings", {
         method: "POST",
         headers: {
@@ -18,13 +14,12 @@ export const ApiProvider = ({ children }) => {
         },
         body: JSON.stringify({ 'userid' : userId }),
       });
-      const responsData = await res.json(); 
-      console.log(['kkll;',responsData])     
-      return responsData;
-    };    
-    req();
 
-  };
+      const responsData = await res.json();      
+      return responsData
+ 
+  }
+
   return (
     <ApiContext.Provider value={{ giftsoffollowings }}>
       {children}
