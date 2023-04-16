@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     );
     const responsData = await resApi.json();
     if (resApi.ok) {      
-      res.status(200).json(responsData.gift_detail);      
+      res.status(200).json(responsData);       
     }
   } else {
     // res.setHeader("Allow", ["POST"]);

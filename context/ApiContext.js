@@ -16,12 +16,27 @@ export const ApiProvider = ({ children }) => {
       });
 
       const responsData = await res.json();      
-      return responsData
- 
+      return responsData 
   }
 
+  const giftdetail = async (giftId,userId) => {     
+   
+    const res = await fetch("/api/giftdetail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+      body: JSON.stringify({ 'userid' : userId , 'giftid' : giftId}),
+    });
+
+    const responsData = await res.json();      
+    return responsData
+
+}
+
   return (
-    <ApiContext.Provider value={{ giftsoffollowings }}>
+    <ApiContext.Provider value={{ giftsoffollowings , giftdetail}}>
       {children}
     </ApiContext.Provider>
   );

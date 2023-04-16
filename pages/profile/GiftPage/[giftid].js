@@ -34,8 +34,9 @@ import WorkIcon from "@mui/icons-material/Work";
 import BeachAccessIcon from "@mui/icons-material/BeachAccess";
 import ShareButton from "../../components/profile/ShareButton";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import BottomNav from "../../components/profile/BottomNav";
+import ApiContext from "../../../context/ApiContext";
 
 const theme = createTheme({
   palette: {
@@ -46,30 +47,33 @@ const theme = createTheme({
 });
 
 export default function ProfileEditGift() {
+
   const router = useRouter();
   const { giftid } = router.query;
+  const { giftdetail} = useContext(ApiContext);
   const [value, setValue] = React.useState("1");
   const [gift, setGift] = React.useState({});
 
-  useEffect(() => {
-    const req = async () => {
-      const res = await fetch(`http://localhost:8888/gifts/${giftid}`);
-      const responseData = await res.json();
-      setGift(responseData);
-    };
-    req();
-  }, [giftid]);
+  useEffect( () => {
+    async function DataReceive() {     
+      const response = await giftdetail(giftid,1) ;  
+   //   console.log(response.gift_detail[0])  
+      setGift(response);
+     
+    }  
+    DataReceive();   
+    //  setGlist(response) 
+  }, [giftid,giftdetail]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  return (
-  
+  return (  
    
       <Container component="main" maxWidth="sm" sx={{ mb: 12, mt: 10 }}>
         <ProfileAppBar></ProfileAppBar>
         <Paper elevation={0} sx={{ my: { xs: 3, md: 6 }, p: { xs: 0, md: 0 } }}>
-          <Link href={`/profile/Profile/${gift.profileid}`}>
+          <Link href={"/profile/Profile/1"}>
             <CardHeader
               avatar={
                 <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -81,7 +85,7 @@ export default function ProfileEditGift() {
                   <MoreVertIcon />
                 </IconButton>
               }
-              title={gift.name}
+              title={gift.giftName}
               subheader="September 14, 2016"
             />
           </Link>
@@ -101,7 +105,7 @@ export default function ProfileEditGift() {
                     width: "100%",
                   }}
                   alt={gift.name}
-                  src={`/giftimages/${gift.photourl}.jpg`}
+                  src={`/giftimages/${gift.giftImageUrl}`}
                 />
               </Grid>
 
@@ -112,7 +116,7 @@ export default function ProfileEditGift() {
                     name="size-medium"
                     max={5}
                     readOnly={true}
-                    value={parseInt(gift.desire)}
+                    value={parseInt(gift.desire_rate)}
                   />
                 </Grid>
 
@@ -136,7 +140,7 @@ export default function ProfileEditGift() {
                     >
                       Product Name:
                     </Box>{" "}
-                    {gift.name}
+                    {gift.giftName}
                   </Typography>
                 </Grid>
                 <Grid
@@ -159,7 +163,7 @@ export default function ProfileEditGift() {
                     >
                       Product Price:
                     </Box>{" "}
-                    {gift.price}
+                    {gift.giftPrice}
                   </Typography>
                 </Grid>
                 <Grid
@@ -182,7 +186,7 @@ export default function ProfileEditGift() {
                     >
                       Product link:
                     </Box>{" "}
-                    <Link href={gift.link}>{gift.link}</Link>
+                    <Link href={gift.giftUrl}>{gift.giftUrl}</Link>
                   </Typography>
                 </Grid>
                 <Grid
@@ -205,7 +209,7 @@ export default function ProfileEditGift() {
                     >
                       Your Description:
                     </Box>{" "}
-                    {gift.description}
+                    {gift.giftDesc}
                   </Typography>
                 </Grid>
 
