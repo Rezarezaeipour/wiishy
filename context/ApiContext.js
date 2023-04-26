@@ -20,7 +20,7 @@ export const ApiProvider = ({ children }) => {
   }
 
   const giftdetail = async (giftId,userId) => {     
-   
+    console.log(['hi',giftId,userId]);
     const res = await fetch("/api/giftdetail", {
       method: "POST",
       headers: {
